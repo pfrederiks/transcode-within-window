@@ -27,3 +27,5 @@ Optional environment variables:
 - `RUN_INTERVAL_SECONDS` (default `60`)
 - `SLEEP_SECONDS` (default `300`)
 - `TRANSCODE_SCRIPT` (default `/config/transcode.sh`)
+
+Make sure `/path/to/transcode.sh` has executable permissions on the host (`chmod +x /path/to/transcode.sh`) before starting the container.

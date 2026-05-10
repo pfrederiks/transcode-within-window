@@ -14,8 +14,19 @@ fi
 
 while true; do
   NOW="$(date +%H%M)"
+  IN_WINDOW=false
 
-  if (( 10#${NOW} >= 10#${START_TIME} && 10#${NOW} < 10#${END_TIME} )); then
+  if (( 10#${START_TIME} <= 10#${END_TIME} )); then
+    if (( 10#${NOW} >= 10#${START_TIME} && 10#${NOW} < 10#${END_TIME} )); then
+      IN_WINDOW=true
+    fi
+  else
+    if (( 10#${NOW} >= 10#${START_TIME} || 10#${NOW} < 10#${END_TIME} )); then
+      IN_WINDOW=true
+    fi
+  fi
+
+  if [[ "${IN_WINDOW}" == "true" ]]; then
     echo "$(date -Iseconds) In solar window (${START_TIME}-${END_TIME}). Running ${TRANSCODE_SCRIPT}."
     "${TRANSCODE_SCRIPT}"
     sleep "${RUN_INTERVAL_SECONDS}"
