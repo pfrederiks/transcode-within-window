@@ -1,4 +1,4 @@
-FROM linuxserver/ffmpeg:latest
+FROM linuxserver/ffmpeg
 
 WORKDIR /work
 
